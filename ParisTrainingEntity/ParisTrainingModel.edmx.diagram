@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fcf0f65f142f43b1aef0773f76994638" Name="Diagram1">
+        <EntityTypeShape EntityType="StaffModel.Borough" Width="1.5" PointX="7.875" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.Cohort" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.Cost_Centres" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.Subjective" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.Team" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.ESRStaff" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.Attendance" Width="1.5" PointX="8.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.BoroughStaffMem" Width="1.5" PointX="10" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.category" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.Course" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.Gender" Width="1.5" PointX="0.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.Location" Width="1.5" PointX="3" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.RA" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.Req" Width="1.5" PointX="8.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.Service" Width="1.5" PointX="8.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.ServMem" Width="1.5" PointX="11" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.Sess" Width="1.5" PointX="5.25" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.Staff" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.Status" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.TeamApprov" Width="1.5" PointX="5.25" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.TeamMem" Width="1.5" PointX="10.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.Title" Width="1.5" PointX="0.75" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.TNA" Width="1.5" PointX="8.25" PointY="20" IsExpanded="true" />
+        <AssociationConnector Association="StaffModel.FK_BoroughMem_Boroughs" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Staff_Cohorts" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Teams_Cohorts" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Staff_Cost_Centres" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_TeamMem_Teams" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Teams_Leader" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Attendance_Booked_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Attendance_Cancelled_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Attendance_Sess" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Attendance_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Req_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Sess_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Staff_Genders" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Sess_Locations" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_RA_ESR_Updated" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_RA_PDS_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_RA_PLUS_Updated" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_RA_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Req_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Req_Statuses" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Services_Services" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_ServMem_Services" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Sess_Trainer" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Staff_LineMan" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Staff_Titles" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_TeamApprov_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_TeamMem_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_TNA_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_TNA_Trainer" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_TNA_Statuses" ManuallyRouted="false" />
+        <AssociationConnector Association="StaffModel.FK_Staff_Subjectives" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

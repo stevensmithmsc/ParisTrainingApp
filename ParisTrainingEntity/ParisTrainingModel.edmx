@@ -1,0 +1,2095 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StaffModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Boroughs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Borough" Type="varchar" MaxLength="15" />
+          <Property Name="Long" Type="varchar" MaxLength="50" />
+          <Property Name="Short" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="Cohorts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cohort" Type="nvarchar" MaxLength="50" />
+          <Property Name="Number" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="Code" Type="varchar" MaxLength="10" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="Creator" Type="int" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="Modifier" Type="int" />
+        </EntityType>
+        <EntityType Name="Cost_Centres">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="CCName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Site" Type="int" />
+          <Property Name="Division" Type="int" />
+          <Property Name="Directorate" Type="int" />
+          <Property Name="Department" Type="int" />
+          <Property Name="Specialty" Type="int" />
+          <Property Name="Enbld" Type="bit" Nullable="false" />
+          <Property Name="Director" Type="int" />
+          <Property Name="Manager_1" Type="int" />
+          <Property Name="Manager_2" Type="int" />
+          <Property Name="Budget_1" Type="int" />
+          <Property Name="Budget_2" Type="int" />
+          <Property Name="Budget_3" Type="int" />
+          <Property Name="Board" Type="int" />
+          <Property Name="SLRserv" Type="int" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="Creator" Type="int" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="Modifier" Type="int" />
+        </EntityType>
+        <EntityType Name="Subjectives">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="SubName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Teams">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Team" Type="nvarchar" MaxLength="50" />
+          <Property Name="ESR" Type="nvarchar" MaxLength="100" />
+          <Property Name="Code" Type="int" />
+          <Property Name="Leader" Type="int" />
+          <Property Name="Cohort" Type="int" />
+          <Property Name="NoTrain" Type="bit" />
+          <Property Name="Dont_Migrate" Type="bit" Nullable="false" />
+          <Property Name="FSGroup" Type="int" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="Creator" Type="int" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="Modifier" Type="int" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="iEmployee" />
+          </Key>
+          <Property Name="iEmployee" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="cEmployee" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="Title" Type="int" />
+          <Property Name="Forename" Type="varchar" MaxLength="35" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="Surname" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Staff_Code" Type="char" MaxLength="10" />
+          <Property Name="Already_Setup" Type="bit" Nullable="false" />
+          <Property Name="UUID" Type="varchar" MaxLength="15" />
+          <Property Name="NHS_Pension" Type="bit" />
+          <Property Name="Comment" Type="text" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="Creator" Type="int" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="Modifier" Type="int" />
+        </EntityType>
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Staff" Type="int" Nullable="false" />
+          <Property Name="Sess" Type="int" Nullable="false" />
+          <Property Name="Outcome" Type="smallint" />
+          <Property Name="Comments" Type="text" />
+          <Property Name="BookedBy" Type="int" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="Creator" Type="int" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="Modifier" Type="int" />
+          <Property Name="CancelledBy" Type="int" />
+        </EntityType>
+        <EntityType Name="BoroughMem">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Borough" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Colour" Type="int" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Course" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Length" Type="smallint" />
+          <Property Name="Notes" Type="text" />
+          <Property Name="External" Type="bit" Nullable="false" />
+          <Property Name="Paris" Type="bit" />
+          <Property Name="Template" Type="smallint" Nullable="false" />
+          <Property Name="FullColour" Type="int" />
+          <Property Name="BookedColour" Type="int" />
+          <Property Name="EmptyColour" Type="int" />
+          <Property Name="Obselete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="tinyint" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Location" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TLoc" Type="bit" Nullable="false" />
+          <Property Name="MaxP" Type="smallint" />
+          <Property Name="Comments" Type="text" />
+        </EntityType>
+        <EntityType Name="RA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="UUID" Type="varchar" MaxLength="12" />
+          <Property Name="PDS_Role" Type="smallint" />
+          <Property Name="PLUS_Updated" Type="smallint" />
+          <Property Name="ESR_Updated" Type="smallint" />
+          <Property Name="RAComments" Type="text" />
+          <Property Name="EGifL3" Type="datetime" />
+          <Property Name="PA1Rec" Type="datetime" />
+          <Property Name="Declaration" Type="datetime" />
+          <Property Name="Go_Live_Approved" Type="datetime" />
+          <Property Name="GLA_Locked" Type="bit" Nullable="false" />
+          <Property Name="Account_Created" Type="datetime" />
+          <Property Name="Add_CITRIX" Type="datetime" />
+          <Property Name="Password_Emailed" Type="datetime" />
+          <Property Name="Access_to_Plus" Type="datetime" />
+          <Property Name="UUID_Add_ESR" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Req">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Staff" Type="int" Nullable="false" />
+          <Property Name="Course" Type="int" Nullable="false" />
+          <Property Name="Status" Type="smallint" />
+          <Property Name="Comments" Type="text" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Service" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Level" Type="smallint" />
+          <Property Name="Display" Type="bit" Nullable="false" />
+          <Property Name="Parent" Type="int" />
+        </EntityType>
+        <EntityType Name="ServMem">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ServID" Type="int" Nullable="false" />
+          <Property Name="Main" Type="bit" Nullable="false" />
+          <Property Name="Pri" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sess">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Course" Type="int" Nullable="false" />
+          <Property Name="Trainer" Type="int" />
+          <Property Name="Location" Type="smallint" />
+          <Property Name="Strt" Type="datetime" />
+          <Property Name="Endt" Type="datetime" />
+          <Property Name="MaxP" Type="smallint" Nullable="false" />
+          <Property Name="Notes" Type="text" />
+        </EntityType>
+        <EntityType Name="Staff1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="smallint" />
+          <Property Name="Fname" Type="varchar" MaxLength="35" />
+          <Property Name="Sname" Type="varchar" MaxLength="35" />
+          <Property Name="PName" Type="varchar" MaxLength="70" />
+          <Property Name="Gender" Type="tinyint" />
+          <Property Name="JobTitle" Type="varchar" MaxLength="100" />
+          <Property Name="Finance" Type="int" />
+          <Property Name="JobStatus" Type="int" />
+          <Property Name="LineMan" Type="int" />
+          <Property Name="Cohort" Type="int" />
+          <Property Name="UUID" Type="varchar" MaxLength="12" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="80" />
+          <Property Name="LM" Type="bit" />
+          <Property Name="Trainer" Type="bit" />
+          <Property Name="LeftTrust" Type="bit" />
+          <Property Name="NoTraining" Type="bit" />
+          <Property Name="Bank" Type="bit" />
+          <Property Name="External" Type="bit" />
+          <Property Name="ESRID" Type="int" />
+          <Property Name="MName" Type="varchar" MaxLength="35" />
+          <Property Name="Comments" Type="text" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="Creator" Type="int" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="Modifier" Type="int" />
+          <Property Name="ADAccount" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="Requirement" Type="bit" Nullable="false" />
+          <Property Name="Attendance" Type="bit" Nullable="false" />
+          <Property Name="RA_PDS" Type="bit" Nullable="false" />
+          <Property Name="TNA_OUT" Type="bit" Nullable="false" />
+          <Property Name="RA_PLUS" Type="bit" Nullable="false" />
+          <Property Name="RA_ESR" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeamApprov">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Staff" Type="int" Nullable="false" />
+          <Property Name="Team" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Start_Date" Type="datetime" />
+          <Property Name="End_Date" Type="datetime" />
+          <Property Name="Details" Type="text" />
+        </EntityType>
+        <EntityType Name="TeamMem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaffID" Type="int" Nullable="false" />
+          <Property Name="TeamID" Type="int" Nullable="false" />
+          <Property Name="Main" Type="bit" Nullable="false" />
+          <Property Name="Assignment" Type="varchar" MaxLength="12" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Titles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Genders" Type="varchar" MaxLength="5" />
+          <Property Name="DGen" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="TNA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Date_Received" Type="datetime" />
+          <Property Name="Trainer" Type="int" />
+          <Property Name="Contact_Date" Type="datetime" />
+          <Property Name="Contact_Outcome" Type="ntext" />
+          <Property Name="TNA_Outcome" Type="smallint" />
+        </EntityType>
+        <Association Name="FK_Attendance_Booked_Staff">
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="0..1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="BookedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendance_Cancelled_Staff">
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="0..1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="CancelledBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendance_Sess">
+          <End Role="Sess" Type="Self.Sess" Multiplicity="1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sess">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="Sess" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendance_Staff">
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="Staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoroughMem_Boroughs">
+          <End Role="Boroughs" Type="Self.Boroughs" Multiplicity="1" />
+          <End Role="BoroughMem" Type="Self.BoroughMem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Boroughs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BoroughMem">
+              <PropertyRef Name="Borough" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RA_ESR_Updated">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="0..1" />
+          <End Role="RA" Type="Self.RA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RA">
+              <PropertyRef Name="ESR_Updated" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RA_PDS_Role">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="0..1" />
+          <End Role="RA" Type="Self.RA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RA">
+              <PropertyRef Name="PDS_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RA_PLUS_Updated">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="0..1" />
+          <End Role="RA" Type="Self.RA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RA">
+              <PropertyRef Name="PLUS_Updated" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RA_Staff">
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="1" />
+          <End Role="RA" Type="Self.RA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RA">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Req_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="Req" Type="Self.Req" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Req">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Req_Staff">
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="1" />
+          <End Role="Req" Type="Self.Req" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Req">
+              <PropertyRef Name="Staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Req_Statuses">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="0..1" />
+          <End Role="Req" Type="Self.Req" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Req">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+          <End Role="Services1" Type="Self.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Services1">
+              <PropertyRef Name="Parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServMem_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="ServMem" Type="Self.ServMem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServMem">
+              <PropertyRef Name="ServID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sess_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="Sess" Type="Self.Sess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sess">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sess_Locations">
+          <End Role="Locations" Type="Self.Locations" Multiplicity="0..1" />
+          <End Role="Sess" Type="Self.Sess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sess">
+              <PropertyRef Name="Location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sess_Trainer">
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="0..1" />
+          <End Role="Sess" Type="Self.Sess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sess">
+              <PropertyRef Name="Trainer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Cohorts">
+          <End Role="Cohorts" Type="Self.Cohorts" Multiplicity="0..1" />
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cohorts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff1">
+              <PropertyRef Name="Cohort" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Cost_Centres">
+          <End Role="Cost_Centres" Type="Self.Cost_Centres" Multiplicity="0..1" />
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cost_Centres">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Staff1">
+              <PropertyRef Name="Finance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Genders">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="0..1" />
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff1">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_LineMan">
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="0..1" />
+          <End Role="Staff11" Type="Self.Staff1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff11">
+              <PropertyRef Name="LineMan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Subjectives">
+          <End Role="Subjectives" Type="Self.Subjectives" Multiplicity="0..1" />
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjectives">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Staff1">
+              <PropertyRef Name="JobStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Titles">
+          <End Role="Titles" Type="Self.Titles" Multiplicity="0..1" />
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Titles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff1">
+              <PropertyRef Name="Title" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamApprov_Staff">
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="1" />
+          <End Role="TeamApprov" Type="Self.TeamApprov" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeamApprov">
+              <PropertyRef Name="Staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamMem_Staff">
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="1" />
+          <End Role="TeamMem" Type="Self.TeamMem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeamMem">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamMem_Teams">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+          <End Role="TeamMem" Type="Self.TeamMem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeamMem">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teams_Cohorts">
+          <End Role="Cohorts" Type="Self.Cohorts" Multiplicity="0..1" />
+          <End Role="Teams" Type="Self.Teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cohorts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Teams">
+              <PropertyRef Name="Cohort" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teams_Leader">
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="0..1" />
+          <End Role="Teams" Type="Self.Teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Teams">
+              <PropertyRef Name="Leader" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNA_Staff">
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="1" />
+          <End Role="TNA" Type="Self.TNA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TNA">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNA_Statuses">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="0..1" />
+          <End Role="TNA" Type="Self.TNA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TNA">
+              <PropertyRef Name="TNA_Outcome" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNA_Trainer">
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="0..1" />
+          <End Role="TNA" Type="Self.TNA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TNA">
+              <PropertyRef Name="Trainer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StaffModelStoreContainer">
+          <EntitySet Name="Boroughs" EntityType="Self.Boroughs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cohorts" EntityType="Self.Cohorts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cost_Centres" EntityType="Self.Cost_Centres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subjectives" EntityType="Self.Subjectives" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="ESR" store:Type="Tables" />
+          <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="train" store:Type="Tables" />
+          <EntitySet Name="BoroughMem" EntityType="Self.BoroughMem" Schema="train" store:Type="Tables" />
+          <EntitySet Name="category" EntityType="Self.category" Schema="train" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="train" store:Type="Tables" />
+          <EntitySet Name="Genders" EntityType="Self.Genders" Schema="train" store:Type="Tables" />
+          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="train" store:Type="Tables" />
+          <EntitySet Name="RA" EntityType="Self.RA" Schema="train" store:Type="Tables" />
+          <EntitySet Name="Req" EntityType="Self.Req" Schema="train" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="train" store:Type="Tables" />
+          <EntitySet Name="ServMem" EntityType="Self.ServMem" Schema="train" store:Type="Tables" />
+          <EntitySet Name="Sess" EntityType="Self.Sess" Schema="train" store:Type="Tables" />
+          <EntitySet Name="Staff1" EntityType="Self.Staff1" Schema="train" Table="Staff" store:Type="Tables" />
+          <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="train" store:Type="Tables" />
+          <EntitySet Name="TeamApprov" EntityType="Self.TeamApprov" Schema="train" store:Type="Tables" />
+          <EntitySet Name="TeamMem" EntityType="Self.TeamMem" Schema="train" store:Type="Tables" />
+          <EntitySet Name="Titles" EntityType="Self.Titles" Schema="train" store:Type="Tables" />
+          <EntitySet Name="TNA" EntityType="Self.TNA" Schema="train" store:Type="Tables" />
+          <AssociationSet Name="FK_Attendance_Booked_Staff" Association="Self.FK_Attendance_Booked_Staff">
+            <End Role="Staff1" EntitySet="Staff1" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendance_Cancelled_Staff" Association="Self.FK_Attendance_Cancelled_Staff">
+            <End Role="Staff1" EntitySet="Staff1" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendance_Sess" Association="Self.FK_Attendance_Sess">
+            <End Role="Sess" EntitySet="Sess" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendance_Staff" Association="Self.FK_Attendance_Staff">
+            <End Role="Staff1" EntitySet="Staff1" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoroughMem_Boroughs" Association="Self.FK_BoroughMem_Boroughs">
+            <End Role="Boroughs" EntitySet="Boroughs" />
+            <End Role="BoroughMem" EntitySet="BoroughMem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RA_ESR_Updated" Association="Self.FK_RA_ESR_Updated">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="RA" EntitySet="RA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RA_PDS_Role" Association="Self.FK_RA_PDS_Role">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="RA" EntitySet="RA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RA_PLUS_Updated" Association="Self.FK_RA_PLUS_Updated">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="RA" EntitySet="RA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RA_Staff" Association="Self.FK_RA_Staff">
+            <End Role="Staff1" EntitySet="Staff1" />
+            <End Role="RA" EntitySet="RA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Req_Courses" Association="Self.FK_Req_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Req" EntitySet="Req" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Req_Staff" Association="Self.FK_Req_Staff">
+            <End Role="Staff1" EntitySet="Staff1" />
+            <End Role="Req" EntitySet="Req" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Req_Statuses" Association="Self.FK_Req_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Req" EntitySet="Req" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services_Services" Association="Self.FK_Services_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Services1" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServMem_Services" Association="Self.FK_ServMem_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="ServMem" EntitySet="ServMem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sess_Courses" Association="Self.FK_Sess_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Sess" EntitySet="Sess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sess_Locations" Association="Self.FK_Sess_Locations">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Sess" EntitySet="Sess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sess_Trainer" Association="Self.FK_Sess_Trainer">
+            <End Role="Staff1" EntitySet="Staff1" />
+            <End Role="Sess" EntitySet="Sess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Cohorts" Association="Self.FK_Staff_Cohorts">
+            <End Role="Cohorts" EntitySet="Cohorts" />
+            <End Role="Staff1" EntitySet="Staff1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Cost_Centres" Association="Self.FK_Staff_Cost_Centres">
+            <End Role="Cost_Centres" EntitySet="Cost_Centres" />
+            <End Role="Staff1" EntitySet="Staff1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Genders" Association="Self.FK_Staff_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="Staff1" EntitySet="Staff1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_LineMan" Association="Self.FK_Staff_LineMan">
+            <End Role="Staff1" EntitySet="Staff1" />
+            <End Role="Staff11" EntitySet="Staff1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Subjectives" Association="Self.FK_Staff_Subjectives">
+            <End Role="Subjectives" EntitySet="Subjectives" />
+            <End Role="Staff1" EntitySet="Staff1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Titles" Association="Self.FK_Staff_Titles">
+            <End Role="Titles" EntitySet="Titles" />
+            <End Role="Staff1" EntitySet="Staff1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamApprov_Staff" Association="Self.FK_TeamApprov_Staff">
+            <End Role="Staff1" EntitySet="Staff1" />
+            <End Role="TeamApprov" EntitySet="TeamApprov" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamMem_Staff" Association="Self.FK_TeamMem_Staff">
+            <End Role="Staff1" EntitySet="Staff1" />
+            <End Role="TeamMem" EntitySet="TeamMem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamMem_Teams" Association="Self.FK_TeamMem_Teams">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="TeamMem" EntitySet="TeamMem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teams_Cohorts" Association="Self.FK_Teams_Cohorts">
+            <End Role="Cohorts" EntitySet="Cohorts" />
+            <End Role="Teams" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teams_Leader" Association="Self.FK_Teams_Leader">
+            <End Role="Staff1" EntitySet="Staff1" />
+            <End Role="Teams" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNA_Staff" Association="Self.FK_TNA_Staff">
+            <End Role="Staff1" EntitySet="Staff1" />
+            <End Role="TNA" EntitySet="TNA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNA_Statuses" Association="Self.FK_TNA_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="TNA" EntitySet="TNA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNA_Trainer" Association="Self.FK_TNA_Trainer">
+            <End Role="Staff1" EntitySet="Staff1" />
+            <End Role="TNA" EntitySet="TNA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StaffModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Borough">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="BoroughName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="LongName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShortName" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BoroughMems" Relationship="Self.FK_BoroughMem_Boroughs" FromRole="Boroughs" ToRole="BoroughMem" />
+        </EntityType>
+        <EntityType Name="Cohort">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CohortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="Creator" Type="Int32" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="Modifier" Type="Int32" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_Cohorts" FromRole="Cohorts" ToRole="Staff1" />
+          <NavigationProperty Name="Teams" Relationship="Self.FK_Teams_Cohorts" FromRole="Cohorts" ToRole="Teams" />
+        </EntityType>
+        <EntityType Name="Cost_Centres">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="CCName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Site" Type="Int32" />
+          <Property Name="Division" Type="Int32" />
+          <Property Name="Directorate" Type="Int32" />
+          <Property Name="Department" Type="Int32" />
+          <Property Name="Specialty" Type="Int32" />
+          <Property Name="Enbld" Type="Boolean" Nullable="false" />
+          <Property Name="Director" Type="Int32" />
+          <Property Name="Manager_1" Type="Int32" />
+          <Property Name="Manager_2" Type="Int32" />
+          <Property Name="Budget_1" Type="Int32" />
+          <Property Name="Budget_2" Type="Int32" />
+          <Property Name="Budget_3" Type="Int32" />
+          <Property Name="Board" Type="Int32" />
+          <Property Name="SLRserv" Type="Int32" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="Creator" Type="Int32" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="Modifier" Type="Int32" />
+          <NavigationProperty Name="Staff1" Relationship="Self.FK_Staff_Cost_Centres" FromRole="Cost_Centres" ToRole="Staff1" />
+        </EntityType>
+        <EntityType Name="Subjective">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="SubName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Staff" Relationship="StaffModel.FK_Staff_Subjectives" FromRole="Subjective" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ESR" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="Int32" />
+          <Property Name="LeaderID" Type="Int32" />
+          <Property Name="CohortID" Type="Int32" />
+          <Property Name="NoTrain" Type="Boolean" />
+          <Property Name="Dont_Migrate" Type="Boolean" Nullable="false" />
+          <Property Name="FSGroup" Type="Int32" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="Creator" Type="Int32" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="Modifier" Type="Int32" />
+          <NavigationProperty Name="Cohort" Relationship="Self.FK_Teams_Cohorts" FromRole="Teams" ToRole="Cohorts" />
+          <NavigationProperty Name="TeamMems" Relationship="Self.FK_TeamMem_Teams" FromRole="Teams" ToRole="TeamMem" />
+          <NavigationProperty Name="Leader" Relationship="Self.FK_Teams_Leader" FromRole="Teams" ToRole="Staff1" />
+        </EntityType>
+        <EntityType Name="ESRStaff">
+          <Key>
+            <PropertyRef Name="iEmployee" />
+          </Key>
+          <Property Name="iEmployee" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="cEmployee" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="Title" Type="Int32" />
+          <Property Name="Forename" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Staff_Code" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Already_Setup" Type="Boolean" Nullable="false" />
+          <Property Name="UUID" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="NHS_Pension" Type="Boolean" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="Creator" Type="Int32" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="Modifier" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffID" Type="Int32" Nullable="false" />
+          <Property Name="SessID" Type="Int32" Nullable="false" />
+          <Property Name="OutcomeID" Type="Int16" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BookedByStaffID" Type="Int32" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="Creator" Type="Int32" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="Modifier" Type="Int32" />
+          <Property Name="CancelledByStaffID" Type="Int32" />
+          <NavigationProperty Name="BookedBy" Relationship="Self.FK_Attendance_Booked_Staff" FromRole="Attendance" ToRole="Staff1" />
+          <NavigationProperty Name="CancelledBy" Relationship="Self.FK_Attendance_Cancelled_Staff" FromRole="Attendance" ToRole="Staff1" />
+          <NavigationProperty Name="Sess" Relationship="Self.FK_Attendance_Sess" FromRole="Attendance" ToRole="Sess" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Attendance_Staff" FromRole="Attendance" ToRole="Staff1" />
+        </EntityType>
+        <EntityType Name="BoroughStaffMem">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="StaffID" Type="Int32" Nullable="false" />
+          <Property Name="BoroughID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Borough" Relationship="Self.FK_BoroughMem_Boroughs" FromRole="BoroughMem" ToRole="Boroughs" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Colour" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Length" Type="Int16" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="External" Type="Boolean" Nullable="false" />
+          <Property Name="Paris" Type="Boolean" />
+          <Property Name="Template" Type="Int16" Nullable="false" />
+          <Property Name="FullColour" Type="Int32" />
+          <Property Name="BookedColour" Type="Int32" />
+          <Property Name="EmptyColour" Type="Int32" />
+          <Property Name="Obselete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Reqs" Relationship="Self.FK_Req_Courses" FromRole="Courses" ToRole="Req" />
+          <NavigationProperty Name="Sesses" Relationship="Self.FK_Sess_Courses" FromRole="Courses" ToRole="Sess" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Byte" Nullable="false" />
+          <Property Name="GenderDescription" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TLoc" Type="Boolean" Nullable="false" />
+          <Property Name="MaxP" Type="Int16" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Sessions" Relationship="Self.FK_Sess_Locations" FromRole="Locations" ToRole="Sess" />
+        </EntityType>
+        <EntityType Name="RA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UUID" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="PDSRoleID" Type="Int16" />
+          <Property Name="PLUSUpdatedID" Type="Int16" />
+          <Property Name="ESRUpdatedID" Type="Int16" />
+          <Property Name="RAComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EGifL3" Type="DateTime" Precision="3" />
+          <Property Name="PA1Rec" Type="DateTime" Precision="3" />
+          <Property Name="Declaration" Type="DateTime" Precision="3" />
+          <Property Name="Go_Live_Approved" Type="DateTime" Precision="3" />
+          <Property Name="GLA_Locked" Type="Boolean" Nullable="false" />
+          <Property Name="Account_Created" Type="DateTime" Precision="3" />
+          <Property Name="Add_CITRIX" Type="DateTime" Precision="3" />
+          <Property Name="Password_Emailed" Type="DateTime" Precision="3" />
+          <Property Name="Access_to_Plus" Type="DateTime" Precision="3" />
+          <Property Name="UUID_Add_ESR" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ESRUpdated" Relationship="Self.FK_RA_ESR_Updated" FromRole="RA" ToRole="Statuses" />
+          <NavigationProperty Name="PDSRole" Relationship="Self.FK_RA_PDS_Role" FromRole="RA" ToRole="Statuses" />
+          <NavigationProperty Name="PlusUpdated" Relationship="Self.FK_RA_PLUS_Updated" FromRole="RA" ToRole="Statuses" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_RA_Staff" FromRole="RA" ToRole="Staff1" />
+        </EntityType>
+        <EntityType Name="Req">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffID" Type="Int32" Nullable="false" />
+          <Property Name="CourseID" Type="Int32" Nullable="false" />
+          <Property Name="StatusID" Type="Int16" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Req_Courses" FromRole="Req" ToRole="Courses" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Req_Staff" FromRole="Req" ToRole="Staff1" />
+          <NavigationProperty Name="ReqStatus" Relationship="Self.FK_Req_Statuses" FromRole="Req" ToRole="Statuses" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Service1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Level" Type="Int16" />
+          <Property Name="Display" Type="Boolean" Nullable="false" />
+          <Property Name="Parent" Type="Int32" />
+          <NavigationProperty Name="Services1" Relationship="Self.FK_Services_Services" FromRole="Services" ToRole="Services1" />
+          <NavigationProperty Name="Service2" Relationship="Self.FK_Services_Services" FromRole="Services1" ToRole="Services" />
+          <NavigationProperty Name="ServMems" Relationship="Self.FK_ServMem_Services" FromRole="Services" ToRole="ServMem" />
+        </EntityType>
+        <EntityType Name="ServMem">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ServID" Type="Int32" Nullable="false" />
+          <Property Name="Main" Type="Boolean" Nullable="false" />
+          <Property Name="Pri" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_ServMem_Services" FromRole="ServMem" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="Sess">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseID" Type="Int32" Nullable="false" />
+          <Property Name="TrainerID" Type="Int32" />
+          <Property Name="LocationID" Type="Int16" />
+          <Property Name="Strt" Type="DateTime" Precision="3" />
+          <Property Name="Endt" Type="DateTime" Precision="3" />
+          <Property Name="MaxP" Type="Int16" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Attendances" Relationship="Self.FK_Attendance_Sess" FromRole="Sess" ToRole="Attendance" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Sess_Courses" FromRole="Sess" ToRole="Courses" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Sess_Locations" FromRole="Sess" ToRole="Locations" />
+          <NavigationProperty Name="Trainer" Relationship="Self.FK_Sess_Trainer" FromRole="Sess" ToRole="Staff1" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TitleID" Type="Int16" />
+          <Property Name="Fname" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Sname" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="PName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="GenderID" Type="Byte" />
+          <Property Name="JobTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FinanceCode" Type="Int32" />
+          <Property Name="JobStatusCode" Type="Int32" />
+          <Property Name="LineManID" Type="Int32" />
+          <Property Name="CohortID" Type="Int32" />
+          <Property Name="UUID" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="IsLM" Type="Boolean" />
+          <Property Name="IsTrainer" Type="Boolean" />
+          <Property Name="HasLeftTrust" Type="Boolean" />
+          <Property Name="NoTraining" Type="Boolean" />
+          <Property Name="IsBank" Type="Boolean" />
+          <Property Name="IsExternal" Type="Boolean" />
+          <Property Name="ESRID" Type="Int32" />
+          <Property Name="MName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="Creator" Type="Int32" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="Modifier" Type="Int32" />
+          <Property Name="ADAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cohort" Relationship="Self.FK_Staff_Cohorts" FromRole="Staff1" ToRole="Cohorts" />
+          <NavigationProperty Name="CostCentre" Relationship="Self.FK_Staff_Cost_Centres" FromRole="Staff1" ToRole="Cost_Centres" />
+          <NavigationProperty Name="Leads" Relationship="Self.FK_Teams_Leader" FromRole="Staff1" ToRole="Teams" />
+          <NavigationProperty Name="Attendances" Relationship="Self.FK_Attendance_Staff" FromRole="Staff1" ToRole="Attendance" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Staff_Genders" FromRole="Staff1" ToRole="Genders" />
+          <NavigationProperty Name="RA" Relationship="Self.FK_RA_Staff" FromRole="Staff1" ToRole="RA" />
+          <NavigationProperty Name="Reqs" Relationship="Self.FK_Req_Staff" FromRole="Staff1" ToRole="Req" />
+          <NavigationProperty Name="Sessions" Relationship="Self.FK_Sess_Trainer" FromRole="Staff1" ToRole="Sess" />
+          <NavigationProperty Name="StaffManaged" Relationship="Self.FK_Staff_LineMan" FromRole="Staff1" ToRole="Staff11" />
+          <NavigationProperty Name="LineManager" Relationship="Self.FK_Staff_LineMan" FromRole="Staff11" ToRole="Staff1" />
+          <NavigationProperty Name="Title" Relationship="Self.FK_Staff_Titles" FromRole="Staff1" ToRole="Titles" />
+          <NavigationProperty Name="TeamApprovs" Relationship="Self.FK_TeamApprov_Staff" FromRole="Staff1" ToRole="TeamApprov" />
+          <NavigationProperty Name="TeamMems" Relationship="Self.FK_TeamMem_Staff" FromRole="Staff1" ToRole="TeamMem" />
+          <NavigationProperty Name="TNA" Relationship="Self.FK_TNA_Staff" FromRole="Staff1" ToRole="TNA" />
+          <NavigationProperty Name="Subjective" Relationship="StaffModel.FK_Staff_Subjectives" FromRole="Staff" ToRole="Subjective" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsRequirement" Type="Boolean" Nullable="false" />
+          <Property Name="IsAttendance" Type="Boolean" Nullable="false" />
+          <Property Name="IsRA_PDS" Type="Boolean" Nullable="false" />
+          <Property Name="IsTNA_OUT" Type="Boolean" Nullable="false" />
+          <Property Name="IsRA_PLUS" Type="Boolean" Nullable="false" />
+          <Property Name="IsRA_ESR" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeamApprov">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffID" Type="Int32" Nullable="false" />
+          <Property Name="Team" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Start_Date" Type="DateTime" Precision="3" />
+          <Property Name="End_Date" Type="DateTime" Precision="3" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_TeamApprov_Staff" FromRole="TeamApprov" ToRole="Staff1" />
+        </EntityType>
+        <EntityType Name="TeamMem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffID" Type="Int32" Nullable="false" />
+          <Property Name="TeamID" Type="Int32" Nullable="false" />
+          <Property Name="IsMain" Type="Boolean" Nullable="false" />
+          <Property Name="Assignment" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_TeamMem_Teams" FromRole="TeamMem" ToRole="Teams" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_TeamMem_Staff" FromRole="TeamMem" ToRole="Staff1" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="TheTitle" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Genders" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="DGen" Type="Byte" />
+        </EntityType>
+        <EntityType Name="TNA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Date_Received" Type="DateTime" Precision="3" />
+          <Property Name="TrainerID" Type="Int32" />
+          <Property Name="Contact_Date" Type="DateTime" Precision="3" />
+          <Property Name="Contact_Outcome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TNA_Outcome" Type="Int16" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_TNA_Staff" FromRole="TNA" ToRole="Staff1" />
+          <NavigationProperty Name="Trainer" Relationship="Self.FK_TNA_Trainer" FromRole="TNA" ToRole="Staff1" />
+          <NavigationProperty Name="Outcome" Relationship="Self.FK_TNA_Statuses" FromRole="TNA" ToRole="Statuses" />
+        </EntityType>
+        <Association Name="FK_BoroughMem_Boroughs">
+          <End Role="Boroughs" Type="Self.Borough" Multiplicity="1" />
+          <End Role="BoroughMem" Type="StaffModel.BoroughStaffMem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Boroughs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BoroughMem">
+              <PropertyRef Name="BoroughID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Cohorts">
+          <End Role="Cohorts" Type="Self.Cohort" Multiplicity="0..1" />
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cohorts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff1">
+              <PropertyRef Name="CohortID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teams_Cohorts">
+          <End Role="Cohorts" Type="Self.Cohort" Multiplicity="0..1" />
+          <End Role="Teams" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cohorts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Teams">
+              <PropertyRef Name="CohortID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Cost_Centres">
+          <End Role="Cost_Centres" Type="Self.Cost_Centres" Multiplicity="0..1" />
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cost_Centres">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Staff1">
+              <PropertyRef Name="FinanceCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamMem_Teams">
+          <End Role="Teams" Type="Self.Team" Multiplicity="1" />
+          <End Role="TeamMem" Type="Self.TeamMem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeamMem">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teams_Leader">
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="0..1" />
+          <End Role="Teams" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Teams">
+              <PropertyRef Name="LeaderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendance_Booked_Staff">
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="0..1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="BookedByStaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendance_Cancelled_Staff">
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="0..1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="CancelledByStaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendance_Sess">
+          <End Role="Sess" Type="Self.Sess" Multiplicity="1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sess">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="SessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendance_Staff">
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Req_Courses">
+          <End Role="Courses" Type="StaffModel.Course" Multiplicity="1" />
+          <End Role="Req" Type="Self.Req" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Req">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sess_Courses">
+          <End Role="Courses" Type="StaffModel.Course" Multiplicity="1" />
+          <End Role="Sess" Type="Self.Sess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sess">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Genders">
+          <End Role="Genders" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff1">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sess_Locations">
+          <End Role="Locations" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Sess" Type="Self.Sess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sess">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RA_ESR_Updated">
+          <End Role="Statuses" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="RA" Type="Self.RA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RA">
+              <PropertyRef Name="ESRUpdatedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RA_PDS_Role">
+          <End Role="Statuses" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="RA" Type="Self.RA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RA">
+              <PropertyRef Name="PDSRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RA_PLUS_Updated">
+          <End Role="Statuses" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="RA" Type="Self.RA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RA">
+              <PropertyRef Name="PLUSUpdatedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RA_Staff">
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="1" />
+          <End Role="RA" Type="Self.RA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RA">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Req_Staff">
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="1" />
+          <End Role="Req" Type="Self.Req" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Req">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Req_Statuses">
+          <End Role="Statuses" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Req" Type="Self.Req" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Req">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services_Services">
+          <End Role="Services" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Services1" Type="Self.Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Services1">
+              <PropertyRef Name="Parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServMem_Services">
+          <End Role="Services" Type="Self.Service" Multiplicity="1" />
+          <End Role="ServMem" Type="Self.ServMem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServMem">
+              <PropertyRef Name="ServID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sess_Trainer">
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="0..1" />
+          <End Role="Sess" Type="Self.Sess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sess">
+              <PropertyRef Name="TrainerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_LineMan">
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="0..1" />
+          <End Role="Staff11" Type="StaffModel.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff11">
+              <PropertyRef Name="LineManID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Titles">
+          <End Role="Titles" Type="Self.Title" Multiplicity="0..1" />
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Titles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Staff1">
+              <PropertyRef Name="TitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamApprov_Staff">
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="1" />
+          <End Role="TeamApprov" Type="Self.TeamApprov" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeamApprov">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamMem_Staff">
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="1" />
+          <End Role="TeamMem" Type="Self.TeamMem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeamMem">
+              <PropertyRef Name="StaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNA_Staff">
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="1" />
+          <End Role="TNA" Type="Self.TNA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TNA">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNA_Trainer">
+          <End Role="Staff1" Type="StaffModel.Staff" Multiplicity="0..1" />
+          <End Role="TNA" Type="Self.TNA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff1">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TNA">
+              <PropertyRef Name="TrainerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNA_Statuses">
+          <End Role="Statuses" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="TNA" Type="Self.TNA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TNA">
+              <PropertyRef Name="TNA_Outcome" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StaffEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Boroughs" EntityType="Self.Borough" />
+          <EntitySet Name="Cohorts" EntityType="Self.Cohort" />
+          <EntitySet Name="Cost_Centres" EntityType="Self.Cost_Centres" />
+          <EntitySet Name="Subjectives" EntityType="Self.Subjective" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <EntitySet Name="ESRStaffs" EntityType="StaffModel.ESRStaff" />
+          <EntitySet Name="Attendances" EntityType="Self.Attendance" />
+          <EntitySet Name="BoroughStaffMems" EntityType="StaffModel.BoroughStaffMem" />
+          <EntitySet Name="categories" EntityType="Self.category" />
+          <EntitySet Name="Courses" EntityType="StaffModel.Course" />
+          <EntitySet Name="Genders" EntityType="Self.Gender" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="RAs" EntityType="Self.RA" />
+          <EntitySet Name="Reqs" EntityType="Self.Req" />
+          <EntitySet Name="Services" EntityType="Self.Service" />
+          <EntitySet Name="ServMems" EntityType="Self.ServMem" />
+          <EntitySet Name="Sessions" EntityType="Self.Sess" />
+          <EntitySet Name="Staffs" EntityType="StaffModel.Staff" />
+          <EntitySet Name="Statuses" EntityType="Self.Status" />
+          <EntitySet Name="TeamApprovs" EntityType="Self.TeamApprov" />
+          <EntitySet Name="TeamMems" EntityType="Self.TeamMem" />
+          <EntitySet Name="Titles" EntityType="Self.Title" />
+          <EntitySet Name="TNAs" EntityType="Self.TNA" />
+          <AssociationSet Name="FK_BoroughMem_Boroughs" Association="Self.FK_BoroughMem_Boroughs">
+            <End Role="Boroughs" EntitySet="Boroughs" />
+            <End Role="BoroughMem" EntitySet="BoroughStaffMems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Cohorts" Association="Self.FK_Staff_Cohorts">
+            <End Role="Cohorts" EntitySet="Cohorts" />
+            <End Role="Staff1" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teams_Cohorts" Association="Self.FK_Teams_Cohorts">
+            <End Role="Cohorts" EntitySet="Cohorts" />
+            <End Role="Teams" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Cost_Centres" Association="Self.FK_Staff_Cost_Centres">
+            <End Role="Cost_Centres" EntitySet="Cost_Centres" />
+            <End Role="Staff1" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamMem_Teams" Association="Self.FK_TeamMem_Teams">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="TeamMem" EntitySet="TeamMems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teams_Leader" Association="Self.FK_Teams_Leader">
+            <End Role="Staff1" EntitySet="Staffs" />
+            <End Role="Teams" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendance_Booked_Staff" Association="Self.FK_Attendance_Booked_Staff">
+            <End Role="Staff1" EntitySet="Staffs" />
+            <End Role="Attendance" EntitySet="Attendances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendance_Cancelled_Staff" Association="Self.FK_Attendance_Cancelled_Staff">
+            <End Role="Staff1" EntitySet="Staffs" />
+            <End Role="Attendance" EntitySet="Attendances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendance_Sess" Association="Self.FK_Attendance_Sess">
+            <End Role="Sess" EntitySet="Sessions" />
+            <End Role="Attendance" EntitySet="Attendances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendance_Staff" Association="Self.FK_Attendance_Staff">
+            <End Role="Staff1" EntitySet="Staffs" />
+            <End Role="Attendance" EntitySet="Attendances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Req_Courses" Association="Self.FK_Req_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Req" EntitySet="Reqs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sess_Courses" Association="Self.FK_Sess_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Sess" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Genders" Association="Self.FK_Staff_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="Staff1" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sess_Locations" Association="Self.FK_Sess_Locations">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Sess" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RA_ESR_Updated" Association="Self.FK_RA_ESR_Updated">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="RA" EntitySet="RAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RA_PDS_Role" Association="Self.FK_RA_PDS_Role">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="RA" EntitySet="RAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RA_PLUS_Updated" Association="Self.FK_RA_PLUS_Updated">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="RA" EntitySet="RAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RA_Staff" Association="Self.FK_RA_Staff">
+            <End Role="Staff1" EntitySet="Staffs" />
+            <End Role="RA" EntitySet="RAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Req_Staff" Association="Self.FK_Req_Staff">
+            <End Role="Staff1" EntitySet="Staffs" />
+            <End Role="Req" EntitySet="Reqs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Req_Statuses" Association="Self.FK_Req_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Req" EntitySet="Reqs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services_Services" Association="Self.FK_Services_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Services1" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServMem_Services" Association="Self.FK_ServMem_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="ServMem" EntitySet="ServMems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sess_Trainer" Association="Self.FK_Sess_Trainer">
+            <End Role="Staff1" EntitySet="Staffs" />
+            <End Role="Sess" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_LineMan" Association="Self.FK_Staff_LineMan">
+            <End Role="Staff1" EntitySet="Staffs" />
+            <End Role="Staff11" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Titles" Association="Self.FK_Staff_Titles">
+            <End Role="Titles" EntitySet="Titles" />
+            <End Role="Staff1" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamApprov_Staff" Association="Self.FK_TeamApprov_Staff">
+            <End Role="Staff1" EntitySet="Staffs" />
+            <End Role="TeamApprov" EntitySet="TeamApprovs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamMem_Staff" Association="Self.FK_TeamMem_Staff">
+            <End Role="Staff1" EntitySet="Staffs" />
+            <End Role="TeamMem" EntitySet="TeamMems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNA_Staff" Association="Self.FK_TNA_Staff">
+            <End Role="Staff1" EntitySet="Staffs" />
+            <End Role="TNA" EntitySet="TNAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNA_Trainer" Association="Self.FK_TNA_Trainer">
+            <End Role="Staff1" EntitySet="Staffs" />
+            <End Role="TNA" EntitySet="TNAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNA_Statuses" Association="Self.FK_TNA_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="TNA" EntitySet="TNAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Subjectives" Association="StaffModel.FK_Staff_Subjectives">
+            <End Role="Subjective" EntitySet="Subjectives" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Staff_Subjectives">
+          <End Type="StaffModel.Subjective" Role="Subjective" Multiplicity="0..1" />
+          <End Type="StaffModel.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjective">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="JobStatusCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StaffModelStoreContainer" CdmEntityContainer="StaffEntities">
+          <EntitySetMapping Name="Boroughs">
+            <EntityTypeMapping TypeName="StaffModel.Borough">
+              <MappingFragment StoreEntitySet="Boroughs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BoroughName" ColumnName="Borough" />
+                <ScalarProperty Name="LongName" ColumnName="Long" />
+                <ScalarProperty Name="ShortName" ColumnName="Short" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cohorts">
+            <EntityTypeMapping TypeName="StaffModel.Cohort">
+              <MappingFragment StoreEntitySet="Cohorts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CohortName" ColumnName="Cohort" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cost_Centres">
+            <EntityTypeMapping TypeName="StaffModel.Cost_Centres">
+              <MappingFragment StoreEntitySet="Cost_Centres">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CCName" ColumnName="CCName" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Directorate" ColumnName="Directorate" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Specialty" ColumnName="Specialty" />
+                <ScalarProperty Name="Enbld" ColumnName="Enbld" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Manager_1" ColumnName="Manager_1" />
+                <ScalarProperty Name="Manager_2" ColumnName="Manager_2" />
+                <ScalarProperty Name="Budget_1" ColumnName="Budget_1" />
+                <ScalarProperty Name="Budget_2" ColumnName="Budget_2" />
+                <ScalarProperty Name="Budget_3" ColumnName="Budget_3" />
+                <ScalarProperty Name="Board" ColumnName="Board" />
+                <ScalarProperty Name="SLRserv" ColumnName="SLRserv" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjectives">
+            <EntityTypeMapping TypeName="StaffModel.Subjective">
+              <MappingFragment StoreEntitySet="Subjectives">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="SubName" ColumnName="SubName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="StaffModel.Team">
+              <MappingFragment StoreEntitySet="Teams">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TeamName" ColumnName="Team" />
+                <ScalarProperty Name="ESR" ColumnName="ESR" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="LeaderID" ColumnName="Leader" />
+                <ScalarProperty Name="CohortID" ColumnName="Cohort" />
+                <ScalarProperty Name="NoTrain" ColumnName="NoTrain" />
+                <ScalarProperty Name="Dont_Migrate" ColumnName="Dont_Migrate" />
+                <ScalarProperty Name="FSGroup" ColumnName="FSGroup" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESRStaffs">
+            <EntityTypeMapping TypeName="StaffModel.ESRStaff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="iEmployee" ColumnName="iEmployee" />
+                <ScalarProperty Name="cEmployee" ColumnName="cEmployee" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Forename" ColumnName="Forename" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Staff_Code" ColumnName="Staff_Code" />
+                <ScalarProperty Name="Already_Setup" ColumnName="Already_Setup" />
+                <ScalarProperty Name="UUID" ColumnName="UUID" />
+                <ScalarProperty Name="NHS_Pension" ColumnName="NHS_Pension" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attendances">
+            <EntityTypeMapping TypeName="StaffModel.Attendance">
+              <MappingFragment StoreEntitySet="Attendance">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StaffID" ColumnName="Staff" />
+                <ScalarProperty Name="SessID" ColumnName="Sess" />
+                <ScalarProperty Name="OutcomeID" ColumnName="Outcome" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="BookedByStaffID" ColumnName="BookedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="CancelledByStaffID" ColumnName="CancelledBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BoroughStaffMems">
+            <EntityTypeMapping TypeName="StaffModel.BoroughStaffMem">
+              <MappingFragment StoreEntitySet="BoroughMem">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="StaffID" ColumnName="ID" />
+                <ScalarProperty Name="BoroughID" ColumnName="Borough" />
+                <Condition ColumnName="Type" Value="S" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="StaffModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Category1" ColumnName="Category" />
+                <ScalarProperty Name="Colour" ColumnName="Colour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="StaffModel.Course">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CourseName" ColumnName="Course" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="External" ColumnName="External" />
+                <ScalarProperty Name="Paris" ColumnName="Paris" />
+                <ScalarProperty Name="Template" ColumnName="Template" />
+                <ScalarProperty Name="FullColour" ColumnName="FullColour" />
+                <ScalarProperty Name="BookedColour" ColumnName="BookedColour" />
+                <ScalarProperty Name="EmptyColour" ColumnName="EmptyColour" />
+                <ScalarProperty Name="Obselete" ColumnName="Obselete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="StaffModel.Gender">
+              <MappingFragment StoreEntitySet="Genders">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GenderDescription" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="StaffModel.Location">
+              <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LocationName" ColumnName="Location" />
+                <ScalarProperty Name="TLoc" ColumnName="TLoc" />
+                <ScalarProperty Name="MaxP" ColumnName="MaxP" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RAs">
+            <EntityTypeMapping TypeName="StaffModel.RA">
+              <MappingFragment StoreEntitySet="RA">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UUID" ColumnName="UUID" />
+                <ScalarProperty Name="PDSRoleID" ColumnName="PDS_Role" />
+                <ScalarProperty Name="PLUSUpdatedID" ColumnName="PLUS_Updated" />
+                <ScalarProperty Name="ESRUpdatedID" ColumnName="ESR_Updated" />
+                <ScalarProperty Name="RAComments" ColumnName="RAComments" />
+                <ScalarProperty Name="EGifL3" ColumnName="EGifL3" />
+                <ScalarProperty Name="PA1Rec" ColumnName="PA1Rec" />
+                <ScalarProperty Name="Declaration" ColumnName="Declaration" />
+                <ScalarProperty Name="Go_Live_Approved" ColumnName="Go_Live_Approved" />
+                <ScalarProperty Name="GLA_Locked" ColumnName="GLA_Locked" />
+                <ScalarProperty Name="Account_Created" ColumnName="Account_Created" />
+                <ScalarProperty Name="Add_CITRIX" ColumnName="Add_CITRIX" />
+                <ScalarProperty Name="Password_Emailed" ColumnName="Password_Emailed" />
+                <ScalarProperty Name="Access_to_Plus" ColumnName="Access_to_Plus" />
+                <ScalarProperty Name="UUID_Add_ESR" ColumnName="UUID_Add_ESR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reqs">
+            <EntityTypeMapping TypeName="StaffModel.Req">
+              <MappingFragment StoreEntitySet="Req">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StaffID" ColumnName="Staff" />
+                <ScalarProperty Name="CourseID" ColumnName="Course" />
+                <ScalarProperty Name="StatusID" ColumnName="Status" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="StaffModel.Service">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Service1" ColumnName="Service" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Display" ColumnName="Display" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServMems">
+            <EntityTypeMapping TypeName="StaffModel.ServMem">
+              <MappingFragment StoreEntitySet="ServMem">
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ServID" ColumnName="ServID" />
+                <ScalarProperty Name="Main" ColumnName="Main" />
+                <ScalarProperty Name="Pri" ColumnName="Pri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="StaffModel.Sess">
+              <MappingFragment StoreEntitySet="Sess">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CourseID" ColumnName="Course" />
+                <ScalarProperty Name="TrainerID" ColumnName="Trainer" />
+                <ScalarProperty Name="LocationID" ColumnName="Location" />
+                <ScalarProperty Name="Strt" ColumnName="Strt" />
+                <ScalarProperty Name="Endt" ColumnName="Endt" />
+                <ScalarProperty Name="MaxP" ColumnName="MaxP" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="StaffModel.Staff">
+              <MappingFragment StoreEntitySet="Staff1">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TitleID" ColumnName="Title" />
+                <ScalarProperty Name="Fname" ColumnName="Fname" />
+                <ScalarProperty Name="Sname" ColumnName="Sname" />
+                <ScalarProperty Name="PName" ColumnName="PName" />
+                <ScalarProperty Name="GenderID" ColumnName="Gender" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="FinanceCode" ColumnName="Finance" />
+                <ScalarProperty Name="JobStatusCode" ColumnName="JobStatus" />
+                <ScalarProperty Name="LineManID" ColumnName="LineMan" />
+                <ScalarProperty Name="CohortID" ColumnName="Cohort" />
+                <ScalarProperty Name="UUID" ColumnName="UUID" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsLM" ColumnName="LM" />
+                <ScalarProperty Name="IsTrainer" ColumnName="Trainer" />
+                <ScalarProperty Name="HasLeftTrust" ColumnName="LeftTrust" />
+                <ScalarProperty Name="NoTraining" ColumnName="NoTraining" />
+                <ScalarProperty Name="IsBank" ColumnName="Bank" />
+                <ScalarProperty Name="IsExternal" ColumnName="External" />
+                <ScalarProperty Name="ESRID" ColumnName="ESRID" />
+                <ScalarProperty Name="MName" ColumnName="MName" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="ADAccount" ColumnName="ADAccount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statuses">
+            <EntityTypeMapping TypeName="StaffModel.Status">
+              <MappingFragment StoreEntitySet="Statuses">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StatusDescription" ColumnName="Status" />
+                <ScalarProperty Name="IsRequirement" ColumnName="Requirement" />
+                <ScalarProperty Name="IsAttendance" ColumnName="Attendance" />
+                <ScalarProperty Name="IsRA_PDS" ColumnName="RA_PDS" />
+                <ScalarProperty Name="IsTNA_OUT" ColumnName="TNA_OUT" />
+                <ScalarProperty Name="IsRA_PLUS" ColumnName="RA_PLUS" />
+                <ScalarProperty Name="IsRA_ESR" ColumnName="RA_ESR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamApprovs">
+            <EntityTypeMapping TypeName="StaffModel.TeamApprov">
+              <MappingFragment StoreEntitySet="TeamApprov">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StaffID" ColumnName="Staff" />
+                <ScalarProperty Name="Team" ColumnName="Team" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamMems">
+            <EntityTypeMapping TypeName="StaffModel.TeamMem">
+              <MappingFragment StoreEntitySet="TeamMem">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="IsMain" ColumnName="Main" />
+                <ScalarProperty Name="Assignment" ColumnName="Assignment" />
+                <ScalarProperty Name="IsActive" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Titles">
+            <EntityTypeMapping TypeName="StaffModel.Title">
+              <MappingFragment StoreEntitySet="Titles">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TheTitle" ColumnName="Title" />
+                <ScalarProperty Name="Genders" ColumnName="Genders" />
+                <ScalarProperty Name="DGen" ColumnName="DGen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TNAs">
+            <EntityTypeMapping TypeName="StaffModel.TNA">
+              <MappingFragment StoreEntitySet="TNA">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Date_Received" ColumnName="Date_Received" />
+                <ScalarProperty Name="TrainerID" ColumnName="Trainer" />
+                <ScalarProperty Name="Contact_Date" ColumnName="Contact_Date" />
+                <ScalarProperty Name="Contact_Outcome" ColumnName="Contact_Outcome" />
+                <ScalarProperty Name="TNA_Outcome" ColumnName="TNA_Outcome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
